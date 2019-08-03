@@ -32,7 +32,6 @@ class DBGenel():
                             sart += " OR "
                         sart += "{} = {}".format(b,c)
             sorgu = sorgu.format(sutunlar,tablo,sart)
-            print(sorgu)
             sonuc =  self.cur.execute(sorgu)
             return sonuc.fetchall()
         except Exception as hata:

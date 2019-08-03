@@ -59,7 +59,7 @@ class App(QMainWindow):
     def comboSecim(self,i):
         sonuc = self.pencere.cmbIl.itemData(i)
         self.comboIlceDoldur(sonuc)
-        print(sonuc)
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = App()

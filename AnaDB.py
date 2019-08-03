@@ -2,7 +2,7 @@ from  DB import DBGenel
 
 class AnaDB(DBGenel):
     def __init__(self):
-        super().__init__(r"D:\ibrahim_ediz\Ornekler\DB\TDF.db")
+        super().__init__(r"D:\ibrahim_ediz\Ornekler\GUI\TelefonDefteri\TDF.db")
         
     def kisiListele(self):
         liste = self.select(TABLO="V_KISI_LISTE",SUTUN=["ID","ADI","SOYADI","ILI","ILCESI"])
