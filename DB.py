@@ -71,3 +71,37 @@ class DBGenel():
         finally:
             self.db.close()
             return sonuc
+
+    def update(self,**kwargs):
+        sonuc = 0
+        try:
+            self.dbAc()
+            sorgu = " UPDATE {} SET {} WHERE 1 = 1 {}"
+            tablo = ""
+            sutunlar = ""
+            sartlar = ""
+            for key,value in kwargs.items():
+                if key=="TABLO":
+                    tablo = value
+                elif key == "DEGER":
+                    for a,b in value:
+                        sutunlar += a + "=" + b + ","
+                    sutunlar = sutunlar.rstrip(",")             
+                elif key == "SART":
+                    for a,b,c in value:
+                        if a == "1":
+                            sartlar += " AND "
+                        elif a == "0":
+                            sartlar += " OR "
+                        sartlar += "{} = {}".format(b,c)
+            sorgu = sorgu.format(tablo,sutunlar,sartlar)
+            self.cur.execute(sorgu)
+            self.db.commit()
+            sonuc = 1
+        except Exception as hata:
+            print(hata)
+            sonuc = -1
+            self.db.rollback()
+        finally:
+            self.db.close()
+            return sonuc

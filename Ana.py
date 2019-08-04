@@ -2,7 +2,7 @@ import sys
 import os
 from PyQt5.QtCore import pyqtSlot,pyqtSignal
 from PyQt5 import uic,QtGui,QtCore
-from PyQt5.QtWidgets import QApplication,QMainWindow,QLineEdit,QPushButton,QTableWidgetItem
+from PyQt5.QtWidgets import QApplication,QMainWindow,QLineEdit,QPushButton,QTableWidgetItem,QMessageBox
 from AnaDB import AnaDB
 from Ekleme import TelApp
 from epostaEkleme import EpostaApp
@@ -22,6 +22,7 @@ class App(QMainWindow):
         self.comboIlDoldur()
         self.pencere.TelEkleme.triggered.connect(self.tiklandi)
         self.pencere.epostaEkleme.triggered.connect(self.tiklandi2)
+        self.pencere.btKaydet.clicked.connect(self.KayitEkle)
         self.pencere.show()
     
     def setPencere(self,nesne):
@@ -53,6 +54,28 @@ class App(QMainWindow):
 
     def tiklandi2(self):
         self.epostaApp.gosterme()
+
+    def KayitEkle(self):
+        messageBox = QMessageBox.question(self,"Soru","Kaydetmek istediğinizden emin misiniz?",QMessageBox.Yes|QMessageBox.No|QMessageBox.Cancel,QMessageBox.Yes)
+        if messageBox == QMessageBox.Yes:
+            adi = self.pencere.txtAdi.text()
+            soyadi = self.pencere.txtSoyadi.text()
+            il = self.pencere.cmbIl.currentIndex()
+            ilce = self.pencere.cmbIlce.itemData(self.pencere.cmbIlce.currentIndex())
+            if self.pencere.lblID.text() == "":
+                sonuc = self.veritabani.kisiEkle(adi,soyadi,il,ilce)
+                if sonuc == 1:
+                    self.pencere.tblListe.clear()
+                    self.tabloDoldur()
+            else:
+                sonuc = self.veritabani.kisiGuncelleme(adi,soyadi,il,ilce,self.pencere.lblID.text())
+                if sonuc == 1:
+                    self.pencere.tblListe.clear()
+                    self.tabloDoldur()
+
+                    
+
+
 
     def comboIlDoldur(self):
         self.pencere.cmbIl.addItem("Seçiniz",-1)

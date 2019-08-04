@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>181</width>
-    <height>379</height>
+    <width>178</width>
+    <height>377</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,39 +16,49 @@
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>20</y>
-     <width>161</width>
-     <height>331</height>
+     <x>0</x>
+     <y>10</y>
+     <width>171</width>
+     <height>341</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QLabel" name="label">
+     <widget class="QLabel" name="lblKayit">
       <property name="text">
-       <string>E posta</string>
+       <string/>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QListWidget" name="listeep"/>
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Eposta Listesi</string>
+      </property>
+     </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QListWidget" name="listEposta"/>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="txtEposta"/>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btKaydet">
       <property name="text">
        <string>Kaydet</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="btYeni">
       <property name="text">
        <string>Yeni</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton_3">
+     <widget class="QPushButton" name="btSil">
       <property name="text">
        <string>Sil</string>
       </property>

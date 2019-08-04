@@ -19,12 +19,15 @@ class EpostaApp(QWidget):
         # self.epostaDialog.btKaydet.clicked.connect(self.epostaDialog.close)
     
     def gosterme(self):
-        self.listeleme(self.listeID)
-        self.epostaDialog.show()
+        try:
+            self.listeleme(self.listeID)
+            self.epostaDialog.show()
+        except:
+            pass
 
     
     def listeleme(self,val=0):
         liste = self.veritabani.epostaDB(val)
-        self.epostaDialog.listeep.clear()
+        self.epostaDialog.listEposta.clear()
         for item in liste:
-            self.epostaDialog.listeep.addItem(item[1])
+            self.epostaDialog.listEposta.addItem(item[1])
