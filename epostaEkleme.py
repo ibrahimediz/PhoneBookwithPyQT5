@@ -15,16 +15,16 @@ class EpostaApp(QWidget):
         self.initUI()
 
     def initUI(self):
-        self.epostaDialog.btKaydet.clicked.connect(self.epostaDialog.close)
+        pass
+        # self.epostaDialog.btKaydet.clicked.connect(self.epostaDialog.close)
     
+    def gosterme(self):
+        self.listeleme(self.listeID)
+        self.epostaDialog.show()
 
-    # @pyqtSlot(int)
-    # def isimdegis(self,val=0):
-    #     liste = self.veritabani.TelListe(val)
-    #     self.telDialog.listTel.clear()
-    #     for item in liste:
-    #         self.telDialog.listTel.addItem(item[1])
-
-    #     print(liste)
-    # def tetikleme(self,anaMenu=None):
-    #     anaMenu.kayitId.connect(self.isimdegis)
+    
+    def listeleme(self,val=0):
+        liste = self.veritabani.epostaDB(val)
+        self.epostaDialog.listeep.clear()
+        for item in liste:
+            self.epostaDialog.listeep.addItem(item[1])

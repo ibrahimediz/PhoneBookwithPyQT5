@@ -5,7 +5,7 @@ class epostaEkleme(DBGenel):
         super().__init__(os.getcwd() + os.sep+"TDF.db")
 
     def epostaDB(self,kayitID):
-        liste = self.select(TABLO="TDF_TELEFON",SUTUN=["TEL_ID","TELEFON"],SART=[("1","KAYIT_ID",str(kayitID))])
+        liste = self.select(TABLO="TDF_EPOSTA",SUTUN=["EP_ID","EPOSTA"],SART=[("1","KAYIT_ID",str(kayitID))])
         return liste
     # def kisiListele(self):
     #     liste = self.select(TABLO="V_KISI_LISTE",SUTUN=["ID","ADI","SOYADI","ILI","ILCESI"])

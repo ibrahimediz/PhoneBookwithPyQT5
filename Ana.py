@@ -21,7 +21,7 @@ class App(QMainWindow):
         self.tabloDoldur()
         self.comboIlDoldur()
         self.pencere.TelEkleme.triggered.connect(self.tiklandi)
-        
+        self.pencere.epostaEkleme.triggered.connect(self.tiklandi2)
         self.pencere.show()
     
     def setPencere(self,nesne):
@@ -47,12 +47,12 @@ class App(QMainWindow):
             self.pencere.cmbIlce.setCurrentText(self.pencere.tblListe.item(satir,4).text())
             self.kayitId.emit(int((self.pencere.tblListe.item(satir,0).text())))
             self.epostaApp.listeID = (self.pencere.tblListe.item(satir,0).text())
-    
+            self.epostaApp.listeleme(self.epostaApp.listeID)
     def tiklandi(self):
         self.telApp.telDialog.show()
 
     def tiklandi2(self):
-        self.epostaApp.epostaDialog.show()
+        self.epostaApp.gosterme()
 
     def comboIlDoldur(self):
         self.pencere.cmbIl.addItem("Seçiniz",-1)
