@@ -1,4 +1,5 @@
 import sys
+import os
 from PyQt5.QtCore import pyqtSlot,pyqtSignal
 from PyQt5 import uic,QtGui,QtCore
 from PyQt5.QtWidgets import QApplication,QMainWindow,QLineEdit,QPushButton,QTableWidgetItem
@@ -9,7 +10,7 @@ class App(QMainWindow):
     #Telefon Defteri PyQT
     def __init__(self):
         super().__init__()
-        self.pencere = uic.loadUi(r"D:\ibrahim_ediz\Ornekler\GUI\TelefonDefteri\Ana.ui")
+        self.pencere = uic.loadUi(os.getcwd() + os.sep+"Ana.ui")
         self.veritabani = AnaDB()
         self.pencere.tblListe.setHorizontalHeaderLabels(["ID","ADI","SOYADI","ILI","ILCESI"])
         self.initUI()

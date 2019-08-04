@@ -33,7 +33,10 @@ class DBGenel():
                         sart += "{} = {}".format(b,c)
             sorgu = sorgu.format(sutunlar,tablo,sart)
             sonuc =  self.cur.execute(sorgu)
-            return sonuc.fetchall()
+            print(sorgu)
+            liste = sonuc.fetchall()
+            print(liste)
+            return liste
         except Exception as hata:
             print(hata)
         finally:
