@@ -1,16 +1,16 @@
 import sys
-from PyQt5.QtCore import pyqtSlot
+from PyQt5.QtCore import pyqtSlot,pyqtSignal
 from PyQt5 import uic,QtGui,QtCore
 from PyQt5.QtWidgets import QApplication,QMainWindow,QLineEdit,QPushButton,QTableWidgetItem
 from AnaDB import AnaDB
 from Ekleme import TelApp
 class App(QMainWindow):
+    kayitId = pyqtSignal(int)
     #Telefon Defteri PyQT
     def __init__(self):
         super().__init__()
         self.pencere = uic.loadUi(r"D:\ibrahim_ediz\Ornekler\GUI\TelefonDefteri\Ana.ui")
         self.veritabani = AnaDB()
-        self.telApp = TelApp(self)
         self.pencere.tblListe.setHorizontalHeaderLabels(["ID","ADI","SOYADI","ILI","ILCESI"])
         self.initUI()
         
@@ -19,7 +19,11 @@ class App(QMainWindow):
         self.comboIlDoldur()
         self.pencere.TelEkleme.triggered.connect(self.tiklandi)
         self.pencere.show()
-  
+    
+    def setPencere(self,nesne):
+        self.telApp = TelApp(self)
+        self.telApp.tetikleme(nesne)
+
     def tabloDoldur(self):
         liste = self.veritabani.kisiListele()
         self.pencere.tblListe.doubleClicked.connect(self.tabloSecim)
@@ -37,6 +41,7 @@ class App(QMainWindow):
             self.pencere.txtSoyadi.setText(self.pencere.tblListe.item(satir,2).text())
             self.pencere.cmbIl.setCurrentText(self.pencere.tblListe.item(satir,3).text())
             self.pencere.cmbIlce.setCurrentText(self.pencere.tblListe.item(satir,4).text())
+            self.kayitId.emit(int((self.pencere.tblListe.item(satir,0).text())))
     
     def tiklandi(self):
         self.telApp.telDialog.show()
@@ -63,4 +68,5 @@ class App(QMainWindow):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = App()
+    ex.setPencere(ex)
     sys.exit(app.exec_())

@@ -13,5 +13,11 @@ class TelApp(QWidget):
         self.initUI()
 
     def initUI(self):
-        self.telDialog.btCik.clicked.connect(self.telDialog.close)
+        self.telDialog.btKaydet.clicked.connect(self.telDialog.close)
     
+
+    @pyqtSlot(int)
+    def isimdegis(self,val=0):
+        self.telDialog.txtTel.setText(str(val))
+    def tetikleme(self,anaMenu=None):
+        anaMenu.kayitId.connect(self.isimdegis)
