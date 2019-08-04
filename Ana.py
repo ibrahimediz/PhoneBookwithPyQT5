@@ -5,6 +5,7 @@ from PyQt5 import uic,QtGui,QtCore
 from PyQt5.QtWidgets import QApplication,QMainWindow,QLineEdit,QPushButton,QTableWidgetItem
 from AnaDB import AnaDB
 from Ekleme import TelApp
+from epostaEkleme import EpostaApp
 class App(QMainWindow):
     kayitId = pyqtSignal(int)
     #Telefon Defteri PyQT
@@ -12,6 +13,7 @@ class App(QMainWindow):
         super().__init__()
         self.pencere = uic.loadUi(os.getcwd() + os.sep+"Ana.ui")
         self.veritabani = AnaDB()
+        self.epostaApp = EpostaApp()
         self.pencere.tblListe.setHorizontalHeaderLabels(["ID","ADI","SOYADI","ILI","ILCESI"])
         self.initUI()
         
@@ -19,6 +21,7 @@ class App(QMainWindow):
         self.tabloDoldur()
         self.comboIlDoldur()
         self.pencere.TelEkleme.triggered.connect(self.tiklandi)
+        
         self.pencere.show()
     
     def setPencere(self,nesne):
@@ -43,9 +46,13 @@ class App(QMainWindow):
             self.pencere.cmbIl.setCurrentText(self.pencere.tblListe.item(satir,3).text())
             self.pencere.cmbIlce.setCurrentText(self.pencere.tblListe.item(satir,4).text())
             self.kayitId.emit(int((self.pencere.tblListe.item(satir,0).text())))
+            self.epostaApp.listeID = (self.pencere.tblListe.item(satir,0).text())
     
     def tiklandi(self):
         self.telApp.telDialog.show()
+
+    def tiklandi2(self):
+        self.epostaApp.epostaDialog.show()
 
     def comboIlDoldur(self):
         self.pencere.cmbIl.addItem("Seçiniz",-1)

@@ -168,17 +168,18 @@
      <addaction name="TelEkleme"/>
      <addaction name="TelListeleme"/>
     </widget>
+    <widget class="QMenu" name="eposta">
+     <property name="title">
+      <string>Eposta Listesi</string>
+     </property>
+     <addaction name="epostaEkleme"/>
+    </widget>
     <addaction name="telefon"/>
-    <addaction name="actionEposta_Listesi"/>
+    <addaction name="eposta"/>
    </widget>
    <addaction name="kayit"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionEposta_Listesi">
-   <property name="text">
-    <string>Eposta Listesi</string>
-   </property>
-  </action>
   <action name="TelEkleme">
    <property name="text">
     <string>Ekleme</string>
@@ -187,6 +188,11 @@
   <action name="TelListeleme">
    <property name="text">
     <string>Listeleme</string>
+   </property>
+  </action>
+  <action name="epostaEkleme">
+   <property name="text">
+    <string>Eposta Ekleme</string>
    </property>
   </action>
  </widget>
